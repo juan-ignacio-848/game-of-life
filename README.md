@@ -18,7 +18,6 @@ Run the project directly, via `:exec-fn`:
 Run the project directly, via `:main-opts` (`-m nmkip.game-of-life`):
 
     $ clojure -M:run-m
-    Hello, World!
 
 Run the project's tests (they'll fail until you edit them):
 
