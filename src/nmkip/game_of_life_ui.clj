@@ -45,4 +45,4 @@
   :size size
   :middleware [m/fun-mode])
 
-(defn -main [])
+(defn -main [& args])
