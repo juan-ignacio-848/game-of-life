@@ -1,0 +1,36 @@
+(ns nmkip.game-of-life-test
+  (:require [clojure.test :refer :all]
+            [nmkip.game-of-life :as gol]
+            [clojure.test.check.clojure-test :refer [defspec]]
+            [clojure.test.check.properties :as prop]
+            [clojure.test.check.generators :as gen]))
+
+;;A living cell with less than two neighbors: dies!
+;;A living cell with two or three neighbors: survives!
+;;A living cell with more than three neighbors: dies!
+;;A dead cell with exactly three neighbors: becomes alive!
+(defn neighbors [[cx cy]]
+  (set (for [[x y] [[-1 1] [0 1] [1 1] [-1 0] [1 0] [-1 -1] [0 -1] [1 -1]]]
+         [(+ x cx) (+ y cy)])))
+
+(defn- has-two-or-three-neighbors? [new-world cell]
+  (let [neighbors (neighbors cell)
+        living-neighbors-count (count (clojure.set/intersection neighbors new-world))]
+   (or (= living-neighbors-count 2) (= living-neighbors-count 3)) 
+    ))
+
+(defspec valid-world
+  (prop/for-all [world (gen/set (gen/tuple gen/pos-int gen/pos-int))]
+                (let [new-world (gol/next-state world)]
+                  (every? #(has-two-or-three-neighbors? new-world %) new-world))))
+
+(comment
+  (#{3 2 1} 3)
+  (clojure.set/intersection #{3 2 1} #{3 2})
+  (gen/sample (gen/set (gen/tuple gen/pos-int gen/pos-int)))
+  (def w #{[0 5] [0 3] [0 4]})
+  (def nw (gol/next-state w))
+  (has-two-or-three-neighbors? (gol/next-state w) (first nw))
+  ,)
+
+(neighbors [0 0])

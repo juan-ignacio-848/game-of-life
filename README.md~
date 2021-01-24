@@ -1,9 +1,6 @@
 # game-of-life
 
-- A living cell with less than two neighbors: dies!
-- A living cell with two or three neighbors: survives!
-- A living cell with more than three neighbors: dies!
-- A dead cell with exactly three neighbors: becomes alive!
+FIXME: my new application.
 
 ## Installation
 
