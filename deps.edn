@@ -2,10 +2,9 @@
  :deps {org.clojure/clojure {:mvn/version "1.10.1"}
         quil/quil {:mvn/version "3.1.0"}}
  :aliases
- {:run-m {:main-opts ["-m" "nmkip.game-of-life"]}
-  :run-x {:ns-default nmkip.game-of-life
-          :exec-fn greet
-          :exec-args {:name "Clojure"}}
+ {:run-m {:main-opts ["-m" "nmkip.game-of-life-ui"]}
+  :run-x {:ns-default nmkip.game-of-life-ui
+          :exec-fn -main}
   :test {:extra-paths ["test"]
          :extra-deps {org.clojure/test.check {:mvn/version "1.1.0"}}}
   :runner

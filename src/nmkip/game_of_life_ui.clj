@@ -23,7 +23,7 @@
   (q/background 200)
   (gol/parse pattern))                 
                                       
-(defn update [cells]
+(defn quil-update [cells]
   (gol/next-state cells))
 
 (defn draw [cells]
@@ -37,12 +37,12 @@
 )
 
 (q/defsketch game-of-life
-  :title "Oh so many grey circles"
+  :title "Game of life"
   :settings #(q/smooth 2)
   :setup setup
   :draw draw
-  :update update
+  :update quil-update
   :size size
   :middleware [m/fun-mode])
 
-
+(defn -main [])
