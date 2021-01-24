@@ -7,19 +7,23 @@
 (def size [1000 1000])
 (def offset (/ (first size) 2))
 (def pattern
-  "..OO
-   .O.O
-   O..O.OO
-   OO.O..O
-   .O.O
-   .O..O
-   ..OO")
+  ".....OO........
+OO..OO.O.....OO
+OO...O.O.....OO
+.......O.......
+.........O.....
+...............
+.........O.....
+.......O.......
+OO...O.O.....OO
+OO..OO.O.....OO
+.....OO........")
 
 (defn cell->point [[x y]]
   [(+ offset (* scale x)) (+ offset (* scale y)) scale scale])
 
 (defn setup []
-  (q/frame-rate 1)     
+  (q/frame-rate 10)     
   (q/background 200)
   (gol/parse pattern))                 
                                       
@@ -33,8 +37,7 @@
   (doseq [cell cells]
     (->> cell
         cell->point
-        (apply q/rect))) 
-)
+        (apply q/rect))))
 
 (q/defsketch game-of-life
   :title "Game of life"
@@ -45,4 +48,5 @@
   :size size
   :middleware [m/fun-mode])
 
-(defn -main [& args])
+(defn -main [& args]
+  )
